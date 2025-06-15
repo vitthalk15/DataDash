@@ -4,7 +4,7 @@
 
 ---
 
-## 📸 Screenshots
+## 📸 Demo 
 
 | Login | Register | Dashboard |
 |-------|----------|-----------|
