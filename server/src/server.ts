@@ -23,7 +23,22 @@ const app = express();
 
 // CORS configuration
 const corsOptions = {
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: function (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    const allowedOrigin = process.env.FRONTEND_URL || 'http://localhost:5173';
+    // Remove trailing slash for comparison
+    const cleanOrigin = origin.replace(/\/$/, '');
+    const cleanAllowedOrigin = allowedOrigin.replace(/\/$/, '');
+    
+    if (cleanOrigin === cleanAllowedOrigin) {
+      callback(null, true);
+    } else {
+      console.log(`CORS blocked: ${origin} (expected: ${allowedOrigin})`);
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true

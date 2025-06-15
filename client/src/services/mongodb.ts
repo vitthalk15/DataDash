@@ -5,7 +5,14 @@ class MongoService {
 
   constructor() {
     // Use environment variable for API URL, fallback to relative path for development
-    this.API_URL = import.meta.env.VITE_API_URL || '/api';
+    const envUrl = import.meta.env.VITE_API_URL;
+    if (envUrl && envUrl.startsWith('http')) {
+      // If it's a full URL, ensure it ends with /api
+      this.API_URL = envUrl.endsWith('/api') ? envUrl : `${envUrl}/api`;
+    } else {
+      // Fallback to relative path for development
+      this.API_URL = '/api';
+    }
   }
 
   private async fetchWithAuth(endpoint: string, options: RequestInit = {}) {
