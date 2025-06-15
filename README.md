@@ -119,7 +119,10 @@ npm run dev
 - Deploy to [Vercel](https://vercel.com)
 
 ### Backend
-- Deploy using [Render](https://render.com), [Railway](https://railway.app), or [Heroku](https://heroku.com)
+- Deploy using [Render](https://render.com)
+
+  ### Database
+  - Integrated using [mongoDB](https://cloud.mongodb.com)
 
 Ensure you configure production environment variables in your deployment platform.
 
