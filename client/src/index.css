@@ -1,0 +1,967 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 222.2 84% 4.9%;
+    --muted: 210 40% 96%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 221.2 83.2% 53.3%;
+    --accent-foreground: 222.2 84% 4.9%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+    --radius: 0.5rem;
+    
+    /* Sidebar colors */
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222.2 84% 4.9%;
+    --sidebar-primary: 221.2 83.2% 53.3%;
+    --sidebar-primary-foreground: 210 40% 98%;
+    --sidebar-accent: 210 40% 96%;
+    --sidebar-accent-foreground: 222.2 84% 4.9%;
+    --sidebar-border: 214.3 31.8% 91.4%;
+    --sidebar-ring: 221.2 83.2% 53.3%;
+    --sidebar-width: 280px;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 84% 4.9%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 94.1%;
+    
+    /* Sidebar colors for dark mode */
+    --sidebar-background: 222.2 84% 4.9%;
+    --sidebar-foreground: 210 40% 98%;
+    --sidebar-primary: 217.2 91.2% 59.8%;
+    --sidebar-primary-foreground: 222.2 84% 4.9%;
+    --sidebar-accent: 217.2 32.6% 17.5%;
+    --sidebar-accent-foreground: 210 40% 98%;
+    --sidebar-border: 217.2 32.6% 17.5%;
+    --sidebar-ring: 224.3 76.3% 94.1%;
+  }
+}
+
+@layer base {
+  * {
+    border-color: hsl(var(--border));
+  }
+  
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+    font-feature-settings: "rlig" 1, "calt" 1;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Smooth transitions for theme switching */
+  * {
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+  }
+  
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    background-color: hsl(var(--muted));
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background-color: hsl(var(--muted-foreground) / 0.5);
+    border-radius: 9999px;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: hsl(var(--muted-foreground) / 0.7);
+  }
+}
+
+@layer components {
+  /* Responsive container */
+  .container-responsive {
+    @apply w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Responsive grid layouts */
+  .grid-responsive {
+    @apply grid gap-4 sm:gap-6 lg:gap-8;
+  }
+  
+  .grid-cols-responsive {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+  }
+  
+  .grid-cols-dashboard {
+    @apply grid-cols-1 md:grid-cols-2 lg:grid-cols-4;
+  }
+  
+  .grid-cols-chart {
+    @apply grid-cols-1 lg:grid-cols-7;
+  }
+  
+  /* Card components */
+  .card-responsive {
+    @apply rounded-lg border p-4 sm:p-6;
+    @apply shadow-sm hover:shadow-md transition-shadow duration-200;
+    background-color: hsl(var(--card));
+    border-color: hsl(var(--border));
+  }
+  
+  .card-header-responsive {
+    @apply flex flex-col space-y-1.5 p-4 sm:p-6 pb-0;
+  }
+  
+  .card-content-responsive {
+    @apply p-4 sm:p-6 pt-0;
+  }
+  
+  /* Button components */
+  .btn-responsive {
+    @apply inline-flex items-center justify-center rounded-md text-sm font-medium;
+    @apply transition-colors focus-visible:outline-none focus-visible:ring-2;
+    @apply disabled:pointer-events-none disabled:opacity-50;
+    @apply h-9 px-3 sm:h-10 sm:px-4;
+  }
+  
+  .btn-primary {
+    @apply btn-responsive;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: 1px solid #2563eb;
+  }
+  
+  .btn-primary:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+  }
+  
+  .btn-secondary {
+    @apply btn-responsive;
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: 1px solid #3b82f6;
+  }
+  
+  .btn-secondary:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+  }
+  
+  .btn-outline {
+    @apply btn-responsive;
+    background-color: transparent;
+    color: #2563eb;
+    border: 1px solid #2563eb;
+  }
+  
+  .btn-outline:hover {
+    background-color: #2563eb;
+    color: #ffffff;
+  }
+  
+  .btn-ghost {
+    @apply btn-responsive;
+    background-color: transparent;
+    color: #2563eb;
+    border: 1px solid transparent;
+  }
+  
+  .btn-ghost:hover {
+    background-color: #dbeafe;
+    color: #1d4ed8;
+  }
+  
+  /* Additional blue button variants */
+  .btn-blue {
+    @apply btn-responsive;
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: 1px solid #3b82f6;
+  }
+  
+  .btn-blue:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+  }
+  
+  .btn-blue-light {
+    @apply btn-responsive;
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    border: 1px solid #93c5fd;
+  }
+  
+  .btn-blue-light:hover {
+    background-color: #bfdbfe;
+    border-color: #60a5fa;
+  }
+  
+  .btn-blue-outline {
+    @apply btn-responsive;
+    background-color: transparent;
+    color: #3b82f6;
+    border: 1px solid #3b82f6;
+  }
+  
+  .btn-blue-outline:hover {
+    background-color: #3b82f6;
+    color: #ffffff;
+  }
+  
+  /* Success button with blue accent */
+  .btn-success {
+    @apply btn-responsive;
+    background-color: #10b981;
+    color: #ffffff;
+    border: 1px solid #10b981;
+  }
+  
+  .btn-success:hover {
+    background-color: #059669;
+    border-color: #059669;
+  }
+  
+  /* Danger button with blue accent */
+  .btn-danger {
+    @apply btn-responsive;
+    background-color: #ef4444;
+    color: #ffffff;
+    border: 1px solid #ef4444;
+  }
+  
+  .btn-danger:hover {
+    background-color: #dc2626;
+    border-color: #dc2626;
+  }
+  
+  /* Blue utility classes for any remaining buttons */
+  .btn-blue-50 {
+    @apply btn-responsive;
+    background-color: #eff6ff;
+    color: #1d4ed8;
+    border: 1px solid #bfdbfe;
+  }
+  
+  .btn-blue-50:hover {
+    background-color: #dbeafe;
+    border-color: #93c5fd;
+  }
+  
+  .btn-blue-100 {
+    @apply btn-responsive;
+    background-color: #dbeafe;
+    color: #1d4ed8;
+    border: 1px solid #93c5fd;
+  }
+  
+  .btn-blue-100:hover {
+    background-color: #bfdbfe;
+    border-color: #60a5fa;
+  }
+  
+  .btn-blue-500 {
+    @apply btn-responsive;
+    background-color: #3b82f6;
+    color: #ffffff;
+    border: 1px solid #3b82f6;
+  }
+  
+  .btn-blue-500:hover {
+    background-color: #2563eb;
+    border-color: #2563eb;
+  }
+  
+  .btn-blue-600 {
+    @apply btn-responsive;
+    background-color: #2563eb;
+    color: #ffffff;
+    border: 1px solid #2563eb;
+  }
+  
+  .btn-blue-600:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+  }
+  
+  .btn-blue-700 {
+    @apply btn-responsive;
+    background-color: #1d4ed8;
+    color: #ffffff;
+    border: 1px solid #1d4ed8;
+  }
+  
+  .btn-blue-700:hover {
+    background-color: #1e40af;
+    border-color: #1e40af;
+  }
+  
+  /* Ensure all button elements use blue colors */
+  button[type="submit"],
+  button[type="button"],
+  input[type="submit"],
+  input[type="button"] {
+    background-color: #2563eb;
+    color: #ffffff;
+    border: 1px solid #2563eb;
+  }
+  
+  button[type="submit"]:hover,
+  button[type="button"]:hover,
+  input[type="submit"]:hover,
+  input[type="button"]:hover {
+    background-color: #1d4ed8;
+    border-color: #1d4ed8;
+  }
+  
+  /* Input components */
+  .input-responsive {
+    @apply flex h-9 sm:h-10 w-full rounded-md px-3 py-2;
+    @apply text-sm file:border-0 file:bg-transparent;
+    @apply file:text-sm file:font-medium disabled:cursor-not-allowed disabled:opacity-50;
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+    @apply transition-colors duration-200;
+    background-color: #fffff0;
+    border: 1px solid #cccccc;
+    color: #000000;
+  }
+  
+  .input-responsive::placeholder {
+    color: #666666;
+  }
+  
+  .input-responsive:focus-visible {
+    border-color: hsl(var(--ring));
+    --tw-ring-color: hsl(var(--ring));
+    background-color: #ffffd6;
+  }
+  
+  .input-responsive:hover {
+    border-color: #999999;
+    background-color: #ffffe6;
+  }
+  
+  .input-responsive:disabled {
+    background-color: #f5f5f5;
+    color: #666666;
+    cursor: not-allowed;
+  }
+  
+  /* Ensure input text is always visible - override any conflicting styles */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="search"],
+  input[type="url"],
+  input[type="date"],
+  input[type="time"],
+  input[type="datetime-local"],
+  textarea,
+  select {
+    color: #000000 !important;
+  }
+  
+  /* Force visible text color for all inputs */
+  .input-responsive,
+  input,
+  textarea {
+    color: #000000 !important;
+  }
+  
+  /* Ensure placeholder text is visible but muted */
+  input::placeholder,
+  textarea::placeholder {
+    color: #666666 !important;
+  }
+  
+  /* Additional input visibility fixes for all scenarios */
+  .Input,
+  .input,
+  [data-radix-input],
+  [role="textbox"],
+  [contenteditable="true"] {
+    color: #000000 !important;
+  }
+  
+  /* Fix for form components and dialogs */
+  .form-control input,
+  .form-control textarea,
+  .dialog input,
+  .dialog textarea,
+  .modal input,
+  .modal textarea {
+    color: #000000 !important;
+  }
+  
+  /* Ensure autofill doesn't change text color */
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-text-fill-color: #000000 !important;
+    -webkit-box-shadow: 0 0 0 30px #fffff0 inset !important;
+  }
+  
+  /* Ensure input backgrounds are always light for better contrast */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="tel"],
+  input[type="number"],
+  input[type="search"],
+  input[type="url"],
+  input[type="date"],
+  input[type="time"],
+  input[type="datetime-local"],
+  textarea,
+  select,
+  .input-responsive {
+    background-color: #fffff0 !important;
+  }
+  
+  /* Dark mode specific input styling */
+  .dark input[type="text"],
+  .dark input[type="email"],
+  .dark input[type="password"],
+  .dark input[type="tel"],
+  .dark input[type="number"],
+  .dark input[type="search"],
+  .dark input[type="url"],
+  .dark input[type="date"],
+  .dark input[type="time"],
+  .dark input[type="datetime-local"],
+  .dark textarea,
+  .dark select,
+  .dark .input-responsive {
+    background-color: #fffff0 !important;
+    color: #000000 !important;
+    border-color: #cccccc !important;
+  }
+  
+  .dark input::placeholder,
+  .dark textarea::placeholder {
+    color: #666666 !important;
+  }
+  
+  /* Hover effects for inputs */
+  input[type="text"]:hover,
+  input[type="email"]:hover,
+  input[type="password"]:hover,
+  input[type="tel"]:hover,
+  input[type="number"]:hover,
+  input[type="search"]:hover,
+  input[type="url"]:hover,
+  input[type="date"]:hover,
+  input[type="time"]:hover,
+  input[type="datetime-local"]:hover,
+  textarea:hover,
+  select:hover,
+  .input-responsive:hover {
+    background-color: #ffffe6 !important;
+  }
+  
+  /* Focus effects for inputs */
+  input[type="text"]:focus,
+  input[type="email"]:focus,
+  input[type="password"]:focus,
+  input[type="tel"]:focus,
+  input[type="number"]:focus,
+  input[type="search"]:focus,
+  input[type="url"]:focus,
+  input[type="date"]:focus,
+  input[type="time"]:focus,
+  input[type="datetime-local"]:focus,
+  textarea:focus,
+  select:focus,
+  .input-responsive:focus {
+    background-color: #ffffd6 !important;
+    border-color: #ffd700 !important;
+  }
+  
+  /* Active state for inputs */
+  input[type="text"]:active,
+  input[type="email"]:active,
+  input[type="password"]:active,
+  input[type="tel"]:active,
+  input[type="number"]:active,
+  input[type="search"]:active,
+  input[type="url"]:active,
+  input[type="date"]:active,
+  input[type="time"]:active,
+  input[type="datetime-local"]:active,
+  textarea:active,
+  select:active,
+  .input-responsive:active {
+    background-color: #ffffcc !important;
+  }
+  
+  /* Form input wrapper for consistent spacing */
+  .form-input-wrapper {
+    @apply space-y-2;
+  }
+  
+  .form-input-wrapper label {
+    @apply block text-sm font-medium;
+    color: #000000;
+  }
+  
+  .form-input-wrapper .input-responsive {
+    @apply mt-1;
+  }
+  
+  /* Error state for inputs */
+  .input-responsive.error {
+    border-color: hsl(var(--destructive));
+  }
+  
+  .input-responsive.error:focus-visible {
+    --tw-ring-color: hsl(var(--destructive));
+  }
+  
+  /* Input group styling */
+  .input-group {
+    @apply flex;
+  }
+  
+  .input-group .input-responsive:first-child {
+    @apply rounded-r-none;
+  }
+  
+  .input-group .input-responsive:last-child {
+    @apply rounded-l-none;
+  }
+  
+  .input-group .input-responsive:not(:first-child):not(:last-child) {
+    @apply rounded-none;
+  }
+  
+  /* Search input styling */
+  .input-search {
+    @apply input-responsive;
+    @apply pl-10;
+  }
+  
+  /* Input with icon */
+  .input-with-icon {
+    @apply relative;
+  }
+  
+  .input-with-icon .input-responsive {
+    @apply pl-10;
+  }
+  
+  .input-with-icon .icon {
+    @apply absolute left-3 top-1/2 transform -translate-y-1/2;
+    color: hsl(var(--muted-foreground));
+    @apply pointer-events-none;
+  }
+  
+  /* Form field spacing */
+  .form-field {
+    @apply space-y-2;
+  }
+  
+  .form-field label {
+    @apply block text-sm font-medium;
+    color: #000000;
+  }
+  
+  .form-field .input-responsive {
+    @apply mt-1;
+  }
+  
+  .form-field .error-message {
+    @apply text-sm font-medium;
+    color: hsl(var(--destructive));
+  }
+  
+  /* Responsive form layouts */
+  .form-grid {
+    @apply grid gap-4;
+  }
+  
+  .form-grid-2 {
+    @apply form-grid;
+    @apply grid-cols-1 sm:grid-cols-2;
+  }
+  
+  .form-grid-3 {
+    @apply form-grid;
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  }
+  
+  /* Table components */
+  .table-responsive {
+    @apply w-full caption-bottom text-sm;
+  }
+  
+  .table-header {
+    @apply border-b;
+    background-color: hsl(var(--muted) / 0.5);
+  }
+  
+  .table-row {
+    @apply border-b transition-colors;
+    border-color: hsl(var(--border));
+  }
+  
+  .table-row:hover {
+    background-color: hsl(var(--muted) / 0.5);
+  }
+  
+  .table-cell {
+    @apply p-2 sm:p-4 align-middle;
+  }
+  
+  /* Sidebar components */
+  .sidebar-responsive {
+    @apply flex h-full w-[--sidebar-width] flex-col;
+    @apply border-r;
+    background-color: hsl(var(--sidebar-background));
+    color: hsl(var(--sidebar-foreground));
+    border-color: hsl(var(--sidebar-border));
+  }
+  
+  /* Dashboard specific components */
+  .dashboard-card {
+    @apply card-responsive;
+    @apply flex flex-col justify-between;
+  }
+  
+  .dashboard-stat {
+    @apply text-2xl sm:text-3xl font-bold;
+  }
+  
+  .dashboard-label {
+    @apply text-sm font-medium;
+    color: hsl(var(--muted-foreground));
+  }
+  
+  .dashboard-description {
+    @apply text-xs;
+    color: hsl(var(--muted-foreground));
+  }
+  
+  /* Chart containers */
+  .chart-container {
+    @apply w-full h-[300px] sm:h-[350px] lg:h-[400px];
+  }
+  
+  /* Responsive text */
+  .text-responsive {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+  
+  .text-heading {
+    @apply text-xl sm:text-2xl lg:text-3xl font-bold;
+  }
+  
+  .text-subheading {
+    @apply text-lg sm:text-xl lg:text-2xl font-semibold;
+  }
+  
+  /* Responsive spacing */
+  .space-responsive {
+    @apply space-y-4 sm:space-y-6 lg:space-y-8;
+  }
+  
+  .gap-responsive {
+    @apply gap-4 sm:gap-6 lg:gap-8;
+  }
+  
+  /* Loading states */
+  .loading-skeleton {
+    @apply animate-pulse rounded;
+    background-color: hsl(var(--muted));
+  }
+  
+  /* Focus styles for accessibility */
+  .focus-ring {
+    @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2;
+  }
+  
+  .focus-ring:focus-visible {
+    border-color: hsl(var(--ring));
+  }
+  
+  /* Mobile-first responsive utilities */
+  .mobile-hidden {
+    @apply hidden sm:block;
+  }
+  
+  .mobile-only {
+    @apply block sm:hidden;
+  }
+  
+  .tablet-hidden {
+    @apply hidden lg:block;
+  }
+  
+  .tablet-only {
+    @apply block lg:hidden;
+  }
+  
+  .desktop-only {
+    @apply hidden xl:block;
+  }
+}
+
+@layer utilities {
+  /* Custom utilities for responsive design */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  
+  /* Responsive padding */
+  .p-responsive {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
+  
+  .px-responsive {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+  
+  .py-responsive {
+    @apply py-4 sm:py-6 lg:py-8;
+  }
+  
+  /* Responsive margins */
+  .m-responsive {
+    @apply m-4 sm:m-6 lg:m-8;
+  }
+  
+  .mx-responsive {
+    @apply mx-4 sm:mx-6 lg:mx-8;
+  }
+  
+  .my-responsive {
+    @apply my-4 sm:my-6 lg:my-8;
+  }
+  
+  /* Responsive flex utilities */
+  .flex-responsive {
+    @apply flex flex-col sm:flex-row;
+  }
+  
+  .flex-center {
+    @apply flex items-center justify-center;
+  }
+  
+  .flex-between {
+    @apply flex items-center justify-between;
+  }
+  
+  /* Responsive grid utilities */
+  .grid-auto-fit {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+    @apply gap-4 sm:gap-6 lg:gap-8;
+  }
+  
+  .grid-auto-fill {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
+    @apply gap-4 sm:gap-6 lg:gap-8;
+  }
+}
+
+/* Button group and spacing utilities */
+.btn-group {
+  @apply flex flex-wrap gap-2 sm:gap-3;
+}
+
+.btn-group-vertical {
+  @apply flex flex-col gap-2 sm:gap-3;
+}
+
+.btn-group-horizontal {
+  @apply flex flex-row flex-wrap gap-2 sm:gap-3;
+}
+
+.btn-group-tight {
+  @apply flex flex-wrap gap-1 sm:gap-2;
+}
+
+.btn-group-loose {
+  @apply flex flex-wrap gap-3 sm:gap-4;
+}
+
+/* Button spacing for different screen sizes */
+.btn-spacing-xs {
+  @apply gap-1;
+}
+
+.btn-spacing-sm {
+  @apply gap-2;
+}
+
+.btn-spacing-md {
+  @apply gap-3;
+}
+
+.btn-spacing-lg {
+  @apply gap-4;
+}
+
+.btn-spacing-xl {
+  @apply gap-6;
+}
+
+/* Responsive button spacing */
+.btn-spacing-responsive {
+  @apply gap-2 sm:gap-3 lg:gap-4;
+}
+
+/* Button container with proper spacing */
+.btn-container {
+  @apply flex flex-wrap items-center gap-2 sm:gap-3;
+}
+
+.btn-container-center {
+  @apply flex flex-wrap items-center justify-center gap-2 sm:gap-3;
+}
+
+.btn-container-between {
+  @apply flex flex-wrap items-center justify-between gap-2 sm:gap-3;
+}
+
+.btn-container-end {
+  @apply flex flex-wrap items-center justify-end gap-2 sm:gap-3;
+}
+
+/* Form button groups */
+.form-btn-group {
+  @apply flex flex-wrap gap-2 sm:gap-3 mt-4 sm:mt-6;
+}
+
+.form-btn-group-center {
+  @apply flex flex-wrap justify-center gap-2 sm:gap-3 mt-4 sm:mt-6;
+}
+
+.form-btn-group-between {
+  @apply flex flex-wrap justify-between gap-2 sm:gap-3 mt-4 sm:mt-6;
+}
+
+/* Dialog/Modal button groups */
+.dialog-btn-group {
+  @apply flex flex-wrap gap-2 sm:gap-3 mt-6 sm:mt-8;
+}
+
+.dialog-btn-group-center {
+  @apply flex flex-wrap justify-center gap-2 sm:gap-3 mt-6 sm:mt-8;
+}
+
+.dialog-btn-group-between {
+  @apply flex flex-wrap justify-between gap-2 sm:gap-3 mt-6 sm:mt-8;
+}
+
+/* Card button groups */
+.card-btn-group {
+  @apply flex flex-wrap gap-2 sm:gap-3 mt-4;
+}
+
+.card-btn-group-center {
+  @apply flex flex-wrap justify-center gap-2 sm:gap-3 mt-4;
+}
+
+.card-btn-group-between {
+  @apply flex flex-wrap justify-between gap-2 sm:gap-3 mt-4;
+}
+
+/* Action button groups */
+.action-btn-group {
+  @apply flex flex-wrap gap-2 sm:gap-3;
+}
+
+.action-btn-group-center {
+  @apply flex flex-wrap justify-center gap-2 sm:gap-3;
+}
+
+.action-btn-group-end {
+  @apply flex flex-wrap justify-end gap-2 sm:gap-3;
+}
+
+/* Mobile-first button spacing */
+.btn-mobile-stack {
+  @apply flex flex-col gap-2 sm:flex-row sm:gap-3;
+}
+
+.btn-mobile-stack-center {
+  @apply flex flex-col gap-2 sm:flex-row sm:gap-3 sm:justify-center;
+}
+
+.btn-mobile-stack-between {
+  @apply flex flex-col gap-2 sm:flex-row sm:gap-3 sm:justify-between;
+}
+
+/* Button with margin utilities */
+.btn + .btn {
+  @apply ml-2 sm:ml-3;
+}
+
+.btn-group .btn {
+  @apply m-0;
+}
+
+/* Specific button spacing for common patterns */
+.btn-save-cancel {
+  @apply flex flex-wrap gap-2 sm:gap-3;
+}
+
+.btn-save-cancel .btn-primary {
+  @apply order-2 sm:order-1;
+}
+
+.btn-save-cancel .btn-secondary {
+  @apply order-1 sm:order-2;
+}
+
+.btn-add-edit-delete {
+  @apply flex flex-wrap gap-2 sm:gap-3;
+}
+
+.btn-add-edit-delete .btn-success {
+  @apply order-1;
+}
+
+.btn-add-edit-delete .btn-primary {
+  @apply order-2;
+}
+
+.btn-add-edit-delete .btn-danger {
+  @apply order-3;
+}
